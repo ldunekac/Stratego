@@ -13,7 +13,13 @@ data PType = Flag | Bomb | Spy | Scout | Miner | General | Marshal deriving (Sho
 
 
 showBoardCell :: BoardCell -> Char
-showBoardCell = maybe ' ' showSquare    
+showBoardCell = maybe ' ' showSquare
+
+readBoardCell :: Char -> BoardCell
+readBoardCell ' ' = Nothing
+readBoardCell '.' = Nothing
+readBoardCell 'W' = Just (readSquare Nothing 'W')
+readBoardCell a = Just (readSquare (Just Blue) a)    
 
 showSquare :: Square -> Char
 showSquare (Piece _ Flag)    = 'F'
